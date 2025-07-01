@@ -18,6 +18,9 @@ body {
 main {
   flex-grow: 1; /* Allows main content to expand and push footer down */
   padding: 1rem;
+  max-width: 1200px; /* Optional: constrain max width for very large screens */
+  margin: 0 auto; /* Center content if max-width is active */
+  width: 100%;
 }
 
 img {
@@ -37,16 +40,16 @@ a:hover {
 
 /* Header Styling */
 header {
-  background-color: #F8F9FA; /* Same as body or slightly different */
-  padding: 1rem;
+  background-color: #FFFFFF;
+  padding: 1rem 2rem; /* More padding for header */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #DEE2E6;
+  border-bottom: 2px solid #0A2463; /* Accent border */
 }
 
 .site-name {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   color: #0A2463;
 }
@@ -54,100 +57,127 @@ header {
 .account-link a {
   color: #0A2463;
   font-weight: bold;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #0A2463;
+  border-radius: 5px;
+}
+.account-link a:hover {
+  background-color: #0A2463;
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 /* Navigation Styling */
 nav {
   background-color: #0A2463;
   padding: 0.5rem 0;
+  width: 100%; /* Ensure nav takes full width */
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: space-around; /* Evenly space items for mobile */
+  flex-wrap: wrap; /* Allow wrapping on very small screens if needed */
+  justify-content: space-around;
   padding: 0 1rem;
 }
 
 nav ul li a {
   color: #FFFFFF;
   font-weight: bold;
-  padding: 0.5rem;
-  display: block; /* Make entire area clickable */
+  padding: 0.75rem 1rem; /* Slightly more padding */
+  display: block;
+  text-align: center;
 }
 
 nav ul li a:hover {
   background-color: #3E92CC;
   text-decoration: none;
+  border-radius: 4px; /* Rounded hover effect */
 }
 
 /* Main Content Heading */
-main > h1 {
+main > h1 { /* Welcome message */
   text-align: center;
   margin-bottom: 1.5rem;
   color: #0A2463;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
-/* Hero Section */
+/* Hero Section Styling */
 .hero {
-  position: relative; /* For positioning overlay content */
+  display: grid; /* Use grid for hero layout */
+  grid-template-columns: 1fr; /* Single column by default */
+  align-items: center; /* Center items if they don't fill height */
   margin-bottom: 2rem;
-  background-color: #E9ECEF; /* Light background for the section */
-  border-radius: 8px;
-  overflow: hidden; /* Ensure content respects border radius */
+  background-color: #e0e0e0; /* Placeholder background for the hero section itself */
+  position: relative; /* For absolute positioning of hero-content if needed */
 }
 
-.hero img {
+.hero-image {
   width: 100%;
-  object-fit: cover; /* Ensure image covers the area well */
+  grid-row: 1 / 2; /* Image is in the first row */
+  grid-column: 1 / 2; /* Image is in the first col */
+  object-fit: cover; /* Cover the area */
+  max-height: 400px; /* Max height for hero image */
 }
 
 .hero-content {
-  position: absolute;
-  top: 20px; /* Adjust as needed */
-  left: 20px; /* Adjust as needed */
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5); /* Darker, semi-transparent overlay for better text contrast */
+  color: #FFFFFF;
+  padding: 1.5rem;
+  text-align: left; /* Text aligned left as in mockup */
+  grid-row: 1 / 2; /* Overlay is in the same cell as image */
+  grid-column: 1 / 2; /* Overlay is in the same cell */
+  align-self: center; /* Vertically center content in the grid cell */
+  margin: 1rem; /* Margin around the content box */
   border-radius: 5px;
-  max-width: 60%; /* Prevent overlay from being too wide */
+  max-width: 300px; /* Limit width of the text box */
 }
 
 .hero-content h2 {
-  color: #0A2463;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  color: #FFFFFF; /* White text for heading on dark overlay */
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
 }
 
 .hero-content ul {
-  list-style: none; /* Assuming no bullets from image */
-  margin-bottom: 1rem;
+  list-style: none;
+  margin-bottom: 1.25rem;
+  padding-left: 0;
 }
 
 .hero-content ul li {
-  font-size: 0.9rem;
-  color: #343A40;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .cta-button {
   background-color: #3E92CC;
   color: #FFFFFF;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 5px;
   font-weight: bold;
-  display: inline-block; /* So it doesn't take full width */
+  display: inline-block;
   text-align: center;
+  font-size: 1.1rem;
+  border: none;
 }
 
 .cta-button:hover {
-  background-color: #0A2463;
+  background-color: #2C7BAA; /* Slightly darker blue on hover */
   text-decoration: none;
 }
 
 /* Upgrades and Reviews Sections General */
+.features-reviews-wrapper {
+  /* This wrapper will be controlled by media queries for layout */
+}
+
 .upgrades, .reviews {
   margin-bottom: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #FFFFFF;
   border: 1px solid #DEE2E6;
   border-radius: 8px;
@@ -156,40 +186,55 @@ main > h1 {
 .upgrades h2, .reviews h2 {
   color: #0A2463;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
-  text-align: center;
+  font-size: 1.6rem;
+  text-align: center; /* Center by default, will change for large screens */
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 0.5rem;
 }
 
 /* Upgrades Grid - Mobile (2 columns) */
 .upgrades-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
   gap: 1rem;
   text-align: center;
+}
+
+.upgrade-item {
+  background-color: #F8F9FA; /* Light background for items */
+  padding: 1rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
 }
 
 .upgrade-item img {
   border: 1px solid #DEE2E6;
   border-radius: 5px;
   margin-bottom: 0.5rem;
-  width: 100%; /* Make image responsive within grid item */
-  aspect-ratio: 1 / 1; /* Maintain square aspect ratio, adjust if needed */
-  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain; /* Use contain to see whole image */
 }
 
 .upgrade-item a {
   font-weight: bold;
+  display: block; /* Make link take full width for easier click */
+  margin-top: 0.5rem;
 }
 
 /* Reviews List - Mobile */
 .reviews ul {
-  list-style: disc; /* Default bullets */
-  padding-left: 20px; /* Indent bullets */
+  list-style: none; /* Remove default bullets */
+  padding-left: 0;
 }
 
 .reviews ul li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   font-style: italic;
+  padding: 0.75rem;
+  background-color: #F8F9FA;
+  border-left: 4px solid #3E92CC; /* Accent border for reviews */
+  border-radius: 4px;
 }
 
 /* Footer Styling */
@@ -197,9 +242,41 @@ footer {
   background-color: #0A2463;
   color: #FFFFFF;
   text-align: center;
-  padding: 1rem;
-  margin-top: auto; /* Pushes footer to bottom if content is short */
+  padding: 1.5rem; /* More padding for footer */
+  margin-top: auto;
 }
+
+/* Media Query for Mobile Order (Reviews First) */
+@media screen and (max-width: 767px) {
+  .features-reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .reviews {
+    order: 1; /* Reviews first on mobile */
+  }
+  .upgrades {
+    order: 2; /* Upgrades second on mobile */
+  }
+  .hero-content { /* Adjust hero content for smaller screens */
+    position: static; /* Make it part of normal flow */
+    grid-row: auto;
+    grid-column: auto;
+    background-color: rgba(0,0,0,0.6); /* Ensure contrast if image is light */
+    color: #fff;
+    margin: 0; /* Remove margin to use padding */
+    border-radius: 0; /* No radius if it's full width */
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+   .hero-image {
+    max-height: 250px; /* Adjust hero image height on mobile */
+  }
+}
+
 
 /* Media Query for Larger Screens (e.g., tablets and desktops) */
 @media screen and (min-width: 768px) {
@@ -208,7 +285,8 @@ footer {
   }
 
   nav ul {
-    justify-content: center; /* Center nav items on larger screens */
+    justify-content: center;
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
   }
 
   nav ul li a {
@@ -216,66 +294,64 @@ footer {
   }
 
   main > h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Larger welcome message */
+  }
+
+  .hero {
+    /* Grid layout for hero image and content side-by-side or sophisticated overlay */
+    /* The mobile-first approach with overlay on image might be good enough */
+    /* Or, you could do display: flex; here */
+     max-height: 450px;
+  }
+
+  .hero-image {
+    object-fit: cover; /* Ensure it covers the area */
+    height: 100%; /* Make image fill the hero section height */
   }
 
   .hero-content {
-    top: 50px;
-    left: 50px;
-    padding: 1.5rem;
-    max-width: 40%;
+    position: absolute; /* Take it out of flow for precise positioning */
+    top: 50%;
+    left: 5%; /* Position from left */
+    transform: translateY(-50%); /* Center vertically */
+    background-color: rgba(0, 0, 0, 0.6); /* Ensure good contrast */
+    color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 35%; /* Max width for the content box */
+    z-index: 10; /* Ensure it's above the image */
   }
 
   .hero-content h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .hero-content ul li {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  /* Layout for Upgrades and Reviews side-by-side */
   .features-reviews-wrapper {
-    display: flex;
+    display: grid; /* Use grid for desktop layout */
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 2rem;
+    align-items: start; /* Align items to the start of their grid area */
   }
 
   .upgrades {
-    flex: 1; /* Takes up available space */
-    /* Order is already correct for large screen (upgrades first) */
+    order: 1; /* Upgrades on the left (default order in HTML) */
   }
 
   .reviews {
-    flex: 1; /* Takes up available space */
+    order: 2; /* Reviews on the right */
   }
 
   .upgrades h2, .reviews h2 {
     text-align: left; /* Align section headers to the left */
+    font-size: 1.8rem;
   }
 
-  /* Upgrades Grid on larger screens (could remain 2x2 or change) */
-  /* The 2-column grid from mobile is likely fine, but could be 4-col if desired */
-  /* .upgrades-grid {
-    grid-template-columns: repeat(4, 1fr);
-  } */
-
-  /* The mobile layout for reviews (stacked list) is also fine for desktop. */
-}
-
-/* Specific for Mobile: Reordering sections */
-/* By default, HTML order is Upgrades then Reviews. */
-/* On mobile, as per mockup, Reviews come before Upgrades. */
-/* We can achieve this with flexbox order on the parent if needed, or adjust HTML. */
-/* For CSS-only solution on mobile, if the wrapper is flex column: */
-@media screen and (max-width: 767px) {
-  .features-reviews-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-  .reviews {
-    order: 1; /* Reviews first */
-  }
-  .upgrades {
-    order: 2; /* Upgrades second */
+  .upgrades-grid {
+    /* Could change to 2x2 explicitly if auto-fit isn't desired */
+     grid-template-columns: repeat(2, 1fr);
   }
 }
